@@ -1,44 +1,70 @@
 import React, { Component } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import styled from "styled-components";
+import Slider from "react-slick";
 
 import Sections from "../common/Sections";
 import img from "../images/profile-girl.jpg";
 
 class About extends Component {
   state = {
-    infos: [
+    facts: [
       {
         icon: "",
-        title: "degrees"
+        label: "degrees",
+        badge: 32
       },
       {
         icon: "",
-        title: "working years"
+        label: "working years",
+        badge: 32
       },
       {
         icon: "",
-        title: "team members"
+        label: "team members",
+        badge: 32
       },
       {
         icon: "",
-        title: "certificates"
+        label: "certificates",
+        badge: 32
       },
       {
         icon: "",
-        title: "awards won"
+        label: "awards won",
+        badge: 32
       }
     ]
   };
 
   render() {
+    const { facts } = this.state;
+
+    const slider_settings = {
+      dots: true,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      customPaging: i => (
+        <div
+          style={{
+            width: "10px",
+            height: "10px",
+            background: "white"
+          }}
+        />
+      )
+    };
+
     return (
       <Sections>
         <Container fluid>
           <Row className="justify-content-center">
             <Col md={10}>
               <Row className="align-items-end">
-                <AboutCol className="about-content">
+                <AboutCol className="about-content" md={6}>
                   <span className="title">about me</span>
                   <h2 className="title">who am i?</h2>
                   <p className="desc">
@@ -46,13 +72,14 @@ class About extends Component {
                     in this template. Vivamus tincidunt, augue rutrum convallis
                     volutpat, massa lacus tempus leo.
                   </p>
-                  <div>
-                      <Card />
-                  </div>
+                  <AboutSlider {...slider_settings}>
+                    {facts.map(f => (
+                      <Card label={f.label} badge={f.badge} />
+                    ))}
+                  </AboutSlider>
+
                 </AboutCol>
-                <Col>
-                  <img src={img} />
-                </Col>
+                <Col><img src={img} /></Col>
               </Row>
             </Col>
           </Row>
@@ -62,21 +89,47 @@ class About extends Component {
   }
 }
 
+const AboutSlider = styled(props => <Slider {...props} />)`
+  width: 100%;
+
+  & .item {
+    width: 156px;
+    height: 100%;
+  }
+
+  &&& .slick-dots {
+    position: relative ;
+  }
+`;
+
 const Card = styled(({ icon, badge, label, className }) => {
   return (
     <div className={className}>
-      <span>Icon</span>
-      <span>Badge</span>
-      <span>Label</span>
+      <i className="icon">Icon</i>
+      <span className="badge">{badge}</span>
+      <span className="label">{label}</span>
     </div>
   );
 })`
-    display: flex;
-    flex-direction: column;
-    background: rgba(0,0,0,0.2);
-    border-radius: 5%;
-    padding: 20px;
-    width: 180px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5%;
+  padding: 20px;
+  margin-right: 30px;
+  text-align: center;
+  font-size: 14px;
+  height: 100%;
+  justify-content: stretch;
+  align-items: stretch;
+  text-transform: capitalize;
+
+  & .icon {
+    font-size: 30px;
+  }
+  & .badge {
+    font-size: 26px;
+  }
 `;
 
 const AboutCol = styled(props => <Col {...props} />)`
