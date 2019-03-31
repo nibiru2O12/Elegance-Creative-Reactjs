@@ -55,7 +55,7 @@ class About extends Component {
             style={{
               width: "100%",
               height: "100%",
-              background: "gray",
+              background: "rgba(255,255,255,0.2) ",
               borderRadius: "2px"
             }}
           />
@@ -68,7 +68,7 @@ class About extends Component {
         <Container fluid>
           <Row className="justify-content-center">
             <Col lg={10} >
-              <Row className="align-items-end">
+              <Row>
                 <AboutCol className="about-content" lg={6}>
                   <span className="title">about me</span>
                   <h2 className="title">who am i?</h2>
@@ -106,9 +106,10 @@ const AboutSlider = styled(props => <Slider {...props} />)`
   &&& .slick-dots {
     position: relative;
   }
- 
+
   &&& .slick-active .custom-dot {
-    background: white !important;
+    transition: 1s all;
+    background: rgba(255,255,255,1) !important;
   }
 
   &&& .slick-dots li {
@@ -128,11 +129,14 @@ const Card = styled(({ icon, badge, label, className }) => {
     </div>
   );
 })`
+
+
+
   display: flex;
   flex-direction: column;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 5%;
-  padding: 20px;
+  padding: 40px 20px;
   margin-right: 30px;
   font-size: 14px;
   height: 100%;
@@ -145,7 +149,13 @@ const Card = styled(({ icon, badge, label, className }) => {
   & .badge {
     display: block;
     font-size: 26px;
-    padding: 10px;
+    padding: 14px;
+  }
+
+  &:hover {
+    background: white;
+    color: rgba(0,0,0,0.8);
+    cursor: pointer;
   }
 
 `;
@@ -153,6 +163,7 @@ const Card = styled(({ icon, badge, label, className }) => {
 const AboutCol = styled(props => <Col {...props} />)`
   color: white;
   font-size: 16px;
+  margin-top: 80px;
 
   & .title {
     text-transform: uppercase;
