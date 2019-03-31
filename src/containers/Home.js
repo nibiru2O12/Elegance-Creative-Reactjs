@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 import homeImg from "../images/item-1.jpg";
+import Sections from "../common/Sections";
 
 const Home = () => {
   return (
-    <div className="section">
+    <Sections>
       <SectionContent>
         <p className="greetings">HELLO, WELCOME TO</p>
         <p className="title">ELEGANCE</p>
@@ -15,19 +16,18 @@ const Home = () => {
           templatemo to your friends. Thank you.
         </p>
       </SectionContent>
-    </div>
+    </Sections>
   );
 };
 
 const SectionContent = styled.div`
-  
   color: white;
-  text-align: center; 
+  text-align: center;
   width: 45vw;
   margin-left: auto;
   margin-right: auto;
 
-  p { 
+  p {
     padding: 0px;
     margin: 0px;
   }
@@ -46,7 +46,6 @@ const SectionContent = styled.div`
     font-size: 20px;
     line-height: 1.5;
   }
-
 `;
 
 export default Home;

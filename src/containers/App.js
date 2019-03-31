@@ -3,6 +3,7 @@ import ReactFullpage from "@fullpage/react-fullpage";
 import styled from "styled-components";
 
 import Home from "./Home";
+import About from "./About";
 import VideoBg from "../components/VideoBg";
 import TopNav from '../components/TopNav';
 
@@ -17,8 +18,8 @@ class App extends Component {
               return (
                 <div>
                   <ReactFullpage.Wrapper>
-                    <Home />
-                    <Home />
+                    {/* <Home /> */}
+                    <About />
                   </ReactFullpage.Wrapper>
                 </div>
               );

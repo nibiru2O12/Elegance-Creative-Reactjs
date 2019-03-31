@@ -48,8 +48,8 @@ const Wrapper = styled.div`
 `;
 
 const Banner = styled.div`
-  padding: 15px;
-  font-size: 26px;
+  padding: 10px;
+  font-size: 32px;
   font-weight: bolder;
 `;
 
