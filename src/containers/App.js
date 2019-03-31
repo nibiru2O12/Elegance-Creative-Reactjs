@@ -14,11 +14,12 @@ class App extends Component {
         <VideoBg />
         <TopNav />
           <ReactFullpage
-            render={({ state, fullpageApi }) => {
+          onx
+            render={({ state, fullpageApi={} }) => {
               return (
                 <div>
                   <ReactFullpage.Wrapper>
-                    {/* <Home /> */}
+                    <Home />
                     <About />
                   </ReactFullpage.Wrapper>
                 </div>

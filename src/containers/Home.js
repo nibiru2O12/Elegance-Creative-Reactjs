@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
-import homeImg from "../images/item-1.jpg";
+import inview from "in-view";
 import Sections from "../common/Sections";
 
-const Home = () => {
+const Home = props => {
+  const [isActive, setState] = useState(false);
+
+  useEffect(() => {
+    inview("#section-home").on("enter", () => setState(true));
+    inview("#section-home").on("exit", () => setState(false));
+  });
+
+  console.log(isActive);
+
+  console.log("home");
+
   return (
     <Sections>
-      <SectionContent>
+      <SectionContent id="section-home" active={isActive}>
         <p className="greetings">HELLO, WELCOME TO</p>
         <p className="title">ELEGANCE</p>
         <p className="desc">
@@ -22,10 +32,15 @@ const Home = () => {
 
 const SectionContent = styled.div`
   color: white;
+  transform: translate(0px, 20%);
   text-align: center;
   width: 45vw;
   margin-left: auto;
   margin-right: auto;
+  font-size: 20px;
+  opacity: 0;
+  animation: ${({ active }) => (active ? "fadein" : "")} .6s forwards;
+  /* transform: translate(0, 100px); */
 
   p {
     padding: 0px;
@@ -37,14 +52,30 @@ const SectionContent = styled.div`
   }
 
   & .title {
-    font-size: 94px;
+    font-size: 100px;
     font-weight: bold;
     margin-bottom: 10px;
   }
 
   & .desc {
-    font-size: 20px;
     line-height: 1.5;
+  }
+
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translate(0px, 30%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0px, 0px);
+    }
+  }
+
+  @keyframes fadeout {
+    0% {
+      opacity: 0;
+    }
   }
 `;
 
